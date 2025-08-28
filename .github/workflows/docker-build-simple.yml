@@ -1,0 +1,21 @@
+name: Build Docker (Simples)
+
+on:
+  workflow_dispatch:  # Execução manual
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Build Docker
+        run: |
+          docker build -t manychat-display .
+          echo "✅ Build concluído com sucesso!"
+          echo "📦 Imagem: manychat-display"
+          echo "🔍 Para testar: docker run -p 3000:3000 manychat-display"

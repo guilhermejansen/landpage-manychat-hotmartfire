@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<title>Manychat - Hotmart Fire 2025</title>
+
+
+
+    <link rel="icon" href="https://manychat.com/landing-static/favicon.svg" type="image/svg+xml"/>
+    <link rel="apple-touch-icon" href="https://manychat.com/landing-static/1024.png"/>
+    <link rel="apple-touch-icon" href="https://manychat.com/landing-static/76.png" sizes="76x76"/>
+    <link rel="apple-touch-icon" href="https://manychat.com/landing-static/120.png" sizes="120x120"/>
+    <link rel="apple-touch-icon" href="https://manychat.com/landing-static/152.png" sizes="152x152"/>
+    <link rel="apple-touch-icon" href="https://manychat.com/landing-static/180.png" sizes="180x180"/>
+    <link rel="alternative icon" href="https://manychat.com/landing-static/favicon.png" type="image/png"/>
+
+	<link rel="manifest" href="./site.webmanifest">
+
+	<meta name="msapplication-TileImage" content="https://manychat.com/landing-static/152.png">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
+	<style>
+	* {
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		user-select: none;
+		box-sizing: border-box;
+	}
+	html {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+	}
+	body {
+		width: 100%;
+		height: 100%;
+		user-select: none;
+		background: white;
+		overflow: hidden;
+		margin: 0;
+	}
+	body * {
+		user-select: none;
+	}
+
+	#fullscreen {
+		position: absolute;
+		top: 2vw;
+		right: 2vw;
+		width: 7vw;
+		height: 7vw;
+		z-index: 15;
+		background: black url(./imagens/fullscreen.svg) center center no-repeat;
+		background-size: 90%;
+		transition: 0.2s;
+		display: none;
+	}
+
+	#bg {
+		position: fixed;
+		z-index: 1;
+		top: 50%;
+		left: 50%;
+		min-width: 100%;
+		min-height: 100%;
+		background: white url(./imagens/bg.svg) center center no-repeat;
+		background-size: cover;
+		transform: translate( -50%, -50% );
+		opacity: 1;
+		transition: 0.3s all ease-out;
+	}
+	.aberto #bg {
+		transform: translateX( -100% );
+		opacity: 0;
+	}
+
+	#logo {
+		position: absolute;
+		top: 3.68vh;
+		left: 50%;
+		transform: translate( -50%, 0 );
+		width: 65vw;
+		z-index: 4;
+		opacity: 1;
+		transition: 0.5s all ease-out;
+	}
+	.aberto #logo {
+		transform: translate( -180%, 0 );
+		opacity: 0;
+	}
+
+	#intro {
+		position: absolute;
+		top: 13vh;
+		left: 50%;
+		transform: translate( -50%, 0 );
+		opacity: 1;
+		width: 43vw;
+		z-index: 4;
+		transition: 0.4s all ease-in;
+	}
+	.aberto #intro {
+		transform: translate( -180%, 0 );
+		opacity: 0;
+	}
+
+
+	#videos {
+		position: absolute;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		top: 23vh;
+		bottom: 22vh;
+		left: 50%;
+		transform: translate( -50%, 0 );
+		opacity: 1;
+		width: 90vw;
+		z-index: 11;
+		transition: 0.3s all ease-in-out;
+	}
+	#videos.aberto {
+		pointer-events: none;
+		transform: translate( -65%, 0 );
+		opacity: 0;
+	}
+
+	.abrir-video {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		width: 33%;
+		height: 35%;
+		text-align: center;
+		overflow: hidden;
+		transition: transform 0.3s ease;
+		cursor: pointer;
+		padding: 1px;
+		box-sizing: border-box;
+	}
+
+	.abrir-video .base-anim {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: 3;
+		transform: translate( -50%, -50% );
+		width: calc( 100% - 2vw );
+		height: calc( 100% - 2vw );
+		clip-path: polygon( 1vw 0.8vw, calc( 100% - 0.6vw ) 0, 100% 100%, 0 calc( 100% - 0.5vw ) );
+		background-color: rgba(255,255,255,0.1);
+	}
+
+	.abrir-video:hover {
+		transform: scale(1.03);
+	}
+
+	.abrir-video:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0,0,0,0.1);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+		z-index: 2;
+		pointer-events: none;
+	}
+
+	.abrir-video:hover:before {
+		opacity: 1;
+	}
+
+	.play {
+		display: flex;
+		position: absolute;
+		bottom: 10px;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 8;
+		width: 36px;
+		height: 36px;
+		background: rgba(106, 58, 239, 0.8);
+		border-radius: 50%;
+		justify-content: center;
+		align-items: center;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+		transition: transform 0.3s ease, background-color 0.3s ease;
+	}
+	
+	@media (max-width: 768px) {
+		.play {
+			width: 30px;
+			height: 30px;
+		}
+	}
+	
+	.abrir-video:hover .play {
+		transform: translateX(-50%) scale(1.1);
+		background: #8252ff;
+	}
+	
+	.play img {
+		width: 40%;
+		height: 40%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.btn-txt {
+		width: 100%;
+		height: 100%;
+		max-width: 90%;
+		max-height: 90%;
+		z-index: 6;
+		object-fit: contain;
+		display: block;
+		margin: 0 auto;
+	}
+
+	.video {
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 15;
+		width: 0;
+		height: calc( 100% - 5vw );
+		overflow: hidden;
+		pointer-events: none;
+		opacity: 0;
+		box-shadow: 0 0 10px rgba(0,0,0,0);
+		background: white url(./imagens/bg-footer.svg) center center no-repeat;
+		background-size: cover;
+		transition: 0.3s all cubic-bezier(.65,.01,.38,.16);
+	}
+	.video.aberto {
+		width: 100%;
+		opacity: 1;
+		box-shadow: 0 0 10px rgba(0,0,0,0.4);
+	}
+	video {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate( -50%, -50% );
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		pointer-events: none;
+		transition: 0.4s all cubic-bezier(.65,.01,.38,.16);
+	}
+	video.vertical {
+		object-fit: cover;
+	/*			object-fit: contain;*/
+	}
+
+	#voltar {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: 30;
+		width: 100%;
+		height: 10.18vw;
+		background: black;
+		opacity: 0;
+		transform: translateY(100%);
+		pointer-events: none;
+		cursor: pointer;
+		transition: 0.2s all 0.2s cubic-bezier(.65,.01,.38,.16);
+	}
+	#voltar.aberto {
+		opacity: 1;
+		transform: translateY(0);
+		pointer-events: all;
+	}
+	#voltar img {
+		position: absolute;
+		left: 5vw;
+		top: 50%;
+		transform: translateY( -50% );
+		height: 63.63%;
+		width: auto;
+	}
+	#voltar img:nth-child(2) {
+		left: 16.29vw;
+		height: 36.36%;
+	}
+
+	#footer {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		opacity: 1;
+		width: 100%;
+		height: 20vh;
+		min-height: 80px;
+		background: #6a3aef;
+		z-index: 5;
+		transition: 0.2s all ease-in-out;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+	}
+	.aberto #footer {
+		transform: translate( -180%, 0 );
+		opacity: 0;
+	}
+	#chama {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	#qr-code {
+		position: absolute;
+		top: 50%;
+		right: -1.5%;
+		transform: translateY( -50% );
+		width: 30vw;
+		height: 28.88vw;
+		animation: waveqr 8s ease-in-out infinite;
+		animation-delay: 1s;
+	}
+
+
+	.hide {
+		display: none;
+	}
+
+
+	.qr-code-banner {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 14;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transform: scale(0.03);
+		opacity: 0;
+		pointer-events: none;
+		transition: 0.3s all;
+	}
+	.qr-code-banner.aberto {
+		transform: scale(1);
+		opacity: 1;
+		pointer-events: all;
+	}
+	.qr-code-banner img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate( -50%, -50% );
+		object-fit: cover;
+		max-width: 100%;
+		max-height: 100%;
+		min-width: 100%;
+		min-height: 100%;
+	}
+	#qr-left,
+	#qr-right {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: 13;
+		width: 50%;
+		height: 17%;
+	}
+	#qr-right {
+		left: auto;
+		right: 0;
+	}
+
+
+	.abrir-video {
+		animation: wave 8s ease-in-out infinite;
+	}
+	.abrir-video:nth-child(2) {
+		animation-delay: 0.2s;
+	}
+	.abrir-video:nth-child(3) {
+		animation-delay: 0.4s;
+	}
+	.abrir-video:nth-child(4) {
+		animation-delay: 0.6s;
+	}
+	.abrir-video:nth-child(5) {
+		animation-delay: 0.8s;
+	}
+	.abrir-video:nth-child(6) {
+		animation-delay: 1s;
+	}
+
+	.abrir-video .play {
+		animation: waveplay 8s ease-in-out infinite;
+	}
+	.abrir-video:nth-child(2) .play {
+		animation-delay: 0.2s;
+	}
+	.abrir-video:nth-child(3) .play {
+		animation-delay: 0.4s;
+	}
+	.abrir-video:nth-child(4) .play {
+		animation-delay: 0.6s;
+	}
+	.abrir-video:nth-child(5) .play {
+		animation-delay: 0.8s;
+	}
+	.abrir-video:nth-child(6) .play {
+		animation-delay: 1s;
+	}
+
+	.abrir-video .play img {
+		animation: waveplayimg 8s ease-in-out infinite;
+	}
+	.abrir-video:nth-child(2) .play img {
+		animation-delay: 0.2s;
+	}
+	.abrir-video:nth-child(3) .play img {
+		animation-delay: 0.4s;
+	}
+	.abrir-video:nth-child(4) .play img {
+		animation-delay: 0.6s;
+	}
+	.abrir-video:nth-child(5) .play img {
+		animation-delay: 0.8s;
+	}
+	.abrir-video:nth-child(6) .play img {
+		animation-delay: 1s;
+	}
+
+	@keyframes wave {
+		0% {
+			transform: scale( 1 );
+		}
+		85% {
+			transform: scale( 1 );
+		}
+		90% {
+			transform: scale( 1.04 );
+		}
+		100% {
+			transform: scale( 1 );
+		}
+	}
+	@keyframes waveplay {
+		0% {
+			transform: translateX(-50%) scale(1) rotate(0deg);
+		}
+		85% {
+			transform: translateX(-50%) scale(1) rotate(0deg);
+		}
+		90% {
+			transform: translateX(-50%) scale(1.2) rotate(-5deg);
+		}
+		100% {
+			transform: translateX(-50%) scale(1) rotate(0deg);
+		}
+	}
+	@keyframes waveplayimg {
+		0% {
+			transform: translate(-50%, -50%) scale(1) rotate(0deg);
+		}
+		85% {
+			transform: translate(-50%, -50%) scale(1) rotate(0deg);
+		}
+		90% {
+			transform: translate(-50%, -50%) scale(1.2) rotate(0deg);
+		}
+		100% {
+			transform: translate(-50%, -50%) scale(1) rotate(0deg);
+		}
+	}
+	@keyframes waveqr {
+		0% {
+			transform: scale( 1 ) translateX( 0 ) translateY( -50% );
+		}
+		95% {
+			transform: scale( 1 ) translateX( 0 ) translateY( -50% );
+		}
+		95.5% {
+			transform: scale( 1 ) translateX( 1% ) translateY( -50% );
+		}
+		96% {
+			transform: scale( 1.06 ) translateX( -1% ) translateY( -50% );
+		}
+		96.5% {
+			transform: scale( 1.06 ) translateX( 1% ) translateY( -50% );
+		}
+		97% {
+			transform: scale( 1.06 ) translateX( -1% ) translateY( -50% );
+		}
+		97.5% {
+			transform: scale( 1.06 ) translateX( 1% ) translateY( -50% );
+		}
+		98% {
+			transform: scale( 1.06 ) translateX( -1% ) translateY( -50% );
+		}
+		98.5% {
+			transform: scale( 1.06 ) translateX( 1% ) translateY( -50% );
+		}
+		99% {
+			transform: scale( 1.06 ) translateX( -1% ) translateY( -50% );
+		}
+		99.5% {
+			transform: scale( 1.06 ) translateX( 1% ) translateY( -50% );
+		}
+		100% {
+			transform: scale( 1 ) translateX( -1% ) translateY( -50% );
+		}
+	}
+
+	/* Media Queries para diferentes proporções de tela */
+	@media (max-aspect-ratio: 367/840) {  /* Telas muito verticais */
+		/********
+		Não deve ser necessário ajustes para esse tamanho de tela.
+		********/
+		/* * {
+			border: 1px solid green;
+		} */
+	}
+	@media (min-aspect-ratio: 368/840) and (max-aspect-ratio: 519/840) {  /* Telas verticais */
+		/********
+		Esse tipo de tela é nosso padrão, não necessita ajustes, media query só para ajudar na compreensão do funcionamento.
+		********/
+		/* * {
+			border: 1px solid red;
+		} */
+	}
+	@media (min-aspect-ratio: 520/840) and (max-aspect-ratio: 1100/840) {  /* Telas quase quadradas */
+		/* * {
+			border: 1px solid blue;
+		} */
+		#logo {
+			top: 2.7vh;
+			max-width: 45%;
+		}
+		#intro {
+			top: 11vh;
+			max-width: 30%;
+		}
+		#videos {
+			top: 20vh;
+			bottom: 23vh;
+		}
+		#footer {
+			height: 22vh;
+		}
+		#chama {
+			width: 100%;
+			height: 100%;
+		}
+
+		@media (min-aspect-ratio: 840/840) {
+			#logo {
+				max-width: 35%;
+			}
+			#intro {
+				top: 12vh;
+				max-width: 20%;
+			}
+			.abrir-video {
+				width: 33.33%;
+				height: 33.33%;
+			}
+			.btn-txt {
+				max-width: 90%;
+				max-height: 90%;
+			}
+		}
+
+	}
+	@media (min-aspect-ratio: 1101/840) and (max-aspect-ratio: 840/367) {  /* Telas horizontais */
+		/* @media (min-aspect-ratio: 1101/840) and (max-aspect-ratio: 840/367) { */
+		/* * {
+			border: 1px solid orange;
+		} */
+		.aberto #logo {
+			transform: translateX( -180% ) translateY( -102% );
+			opacity: 0;
+		}
+		.aberto #intro {
+			transform: translateX( -180% ) translateY( 37% );
+			opacity: 0;
+		}
+
+		#logo {
+			top: 45%;
+			left: 15%;
+			transform: translateX( -50% ) translateY( -102% );
+			width: 25%;
+		}
+		#intro {
+			top: 45%;
+			left: 15%;
+			transform: translateX( -50% ) translateY( 37% );
+			width: 20vw;
+		}
+
+		#footer {
+			position: fixed;
+			height: 15vh;
+			min-height: 80px;
+		}
+		#chama {
+			width: 100%;
+			height: 100%;
+		}
+		#videos {
+			top: 2%;
+			right: 2%;
+			transform: translateX( 0 ) translateY( 0 );
+			width: 66%;
+			height: calc( 85vh - 2% );
+			left: auto;
+		}
+		#videos.aberto {
+			transform: translateX( -180% ) translateY( 0 );
+		}
+		.abrir-video {
+			width: 33.33%;
+			height: 33.33%;
+		}
+		.btn-txt {
+			max-width: 90%;
+			max-height: 90%;
+		}
+		.video {
+			height: calc( 100% - 5vw );
+		}
+		video:not(.vertical) {
+			width: auto;
+			height: auto;
+			min-width: 100%;
+			min-height: 100%;
+			object-fit: cover;
+		}
+		video.vertical {
+			width: auto;
+			height: 100%;
+		}
+		#voltar {
+			max-height: 10vh;
+		}
+		#voltar img:nth-child(2) {
+			left: 0;
+			transform: translateX( 100% ) translateY(-50%);
+		}
+	}
+
+	@media (min-aspect-ratio: 841/367) {  /* Telas muito horizontais */
+		/********
+		Não deve ser necessário ajustes para esse tamanho de tela.
+		********/
+		/* * {
+			border: 1px solid yellow;
+		} */
+		#footer {
+			position: fixed;
+			min-height: 80px;
+		}
+	}
+
+	.programacao-container {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		background: white;
+		overflow-y: auto;
+		padding: 20px;
+		pointer-events: auto;
+		touch-action: auto;
+		scroll-behavior: smooth;
+	}
+
+	.prog-item {
+		position: relative;
+		width: 100%;
+		margin-bottom: 40px;
+	}
+	
+	.programacao-img {
+		max-width: 100%;
+		height: auto;
+		box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+		display: block;
+		margin: 0 auto;
+	}
+	
+	.nav-buttons {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		display: flex;
+		z-index: 200;
+	}
+	
+	.nav-buttons.bottom-nav {
+		top: auto;
+		bottom: 15px;
+	}
+	
+	.nav-button {
+		width: 45px;
+		height: 45px;
+		background-color: rgba(106, 58, 239, 0.9);
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+		margin-left: 12px;
+		transition: background-color 0.3s ease, transform 0.3s ease;
+		-webkit-tap-highlight-color: transparent;
+	}
+	
+	.nav-button:hover, .nav-button:active {
+		background-color: #8252ff;
+		transform: scale(1.1);
+	}
+	
+	.nav-button:after {
+		content: '';
+		width: 14px;
+		height: 14px;
+		border-right: 3px solid white;
+		border-bottom: 3px solid white;
+		display: block;
+	}
+	
+	.nav-button.prev:after {
+		transform: rotate(-135deg) translateY(2px);
+	}
+	
+	.nav-button.next:after {
+		transform: rotate(45deg) translateY(-2px);
+	}
+	
+	.scroll-indicator {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		width: 40px;
+		height: 40px;
+		background-color: rgba(106, 58, 239, 0.8);
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		z-index: 200;
+		box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+		transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+	}
+	
+	.scroll-indicator:after {
+		content: '';
+		width: 12px;
+		height: 12px;
+		border-right: 3px solid white;
+		border-bottom: 3px solid white;
+		transform: rotate(45deg) translateY(-3px);
+		transition: transform 0.3s ease;
+	}
+	
+	.scroll-indicator.up:after {
+		transform: rotate(-135deg) translateY(3px);
+	}
+	
+	.scroll-indicator:hover {
+		background-color: #8252ff;
+	}
+	
+	@keyframes bounce {
+		0%, 20%, 50%, 80%, 100% {
+			transform: translateY(0);
+		}
+		40% {
+			transform: translateY(-10px);
+		}
+		60% {
+			transform: translateY(-5px);
+		}
+	}
+
+	</style>
+
+</head>
+<body oncontextmenu="return false;">
+
+	<img src="./imagens/manychat-logo.svg" alt="Manychat" id="logo">
+	<img src="./imagens/quer-saber.png" alt="Confira nossa programação para o Hotmart Fire 2025!" id="intro">
+
+	<div id="bg"></div>
+
+	<div id="fullscreen"></div>
+
+
+	<div id="videos">
+		<div class="abrir-video" idx="4">
+			<div class="base-anim"></div>
+			<img src="./imagens/plays/veja-quem-usa-manychat.png" alt="Veja quem usa a Manychat" class="btn-txt">
+			<div class="play">
+				<img src="./imagens/play.svg" alt="play">
+			</div>
+		</div>		
+		<div class="abrir-video" idx="0">
+			<div class="base-anim"></div>
+			<img src="./imagens/plays/case-micha-menezes.png" alt="Case Micha Menezes" class="btn-txt">
+			<div class="play">
+				<img src="./imagens/play.svg" alt="play">
+			</div>
+		</div>
+		<div class="abrir-video" idx="3">
+			<div class="base-anim"></div>
+			<img src="./imagens/plays/case-camila-farani.png" alt="Case Camila Farani" class="btn-txt">
+			<div class="play">
+				<img src="./imagens/play.svg" alt="play">
+			</div>
+		</div>
+		<div class="abrir-video" idx="1">
+			<div class="base-anim"></div>
+			<img src="./imagens/plays/case-galileu-nogueira.png" alt="Case Galileu Nogueira" class="btn-txt">
+			<div class="play">
+				<img src="./imagens/play.svg" alt="play">
+			</div>
+		</div>
+		<div class="abrir-video" idx="2">
+			<div class="base-anim"></div>
+			<img src="./imagens/plays/case-rafa-xavier.png" alt="Case Rafa Xavier" class="btn-txt">
+			<div class="play">
+				<img src="./imagens/play.svg" alt="play">
+			</div>
+		</div>
+	</div>
+
+	<div class="video">
+		<video src="videos/HISTORIA-1-MICHA.mp4" playsinline webkit-playsinline preload="auto" muted></video>
+	</div>
+	<div class="video">
+		<video src="videos/HISTORIA-2-GALILEU.mp4" playsinline webkit-playsinline preload="auto" muted></video>
+	</div>
+	<div class="video">
+		<video src="videos/HISTORIA-3-RAFA.mp4" playsinline webkit-playsinline preload="auto" muted></video>
+	</div>
+	<div class="video">
+		<video src="videos/HISTORIA-4-CAMILA.mp4" playsinline webkit-playsinline preload="auto" muted></video>
+	</div>
+	<div class="video">
+		<video src="videos/VINHETA-3.mp4" playsinline webkit-playsinline preload="auto" muted></video>
+	</div>
+	</div>
+
+
+	<div id="voltar">
+		<img src="./imagens/seta-voltar.svg" alt="Voltar">
+		<img src="./imagens/voltar.svg" alt="Voltar">
+	</div>
+
+
+	<div id="footer">
+		<img src="./imagens/qr-code-rodape.png" id="chama">
+		<!-- <img src="./imagens/chama-no-chat.svg" alt="Quer destravar a Vending Machine? Chama no chat!" id="chama"> -->
+		<!-- <img src="./imagens/qr-code.svg" alt="QR Code" id="qr-code"> -->
+	</div>
+
+<!-- 	<div id="qr-clique">
+		<div id="qr-left"></div>
+		<div id="qr-right"></div>
+	</div>
+	<div id="qr-banner-left" class="qr-code-banner">
+		<img src="./imagens/qr-code-left.jpg" alt="qr-code">
+	</div>
+	<div id="qr-banner-right" class="qr-code-banner">
+		<img src="./imagens/qr-code-right.jpg" alt="qr-code">
+	</div>
+ -->
+	<script>
+		/*
+		 * Cache para acesso offline.
+		 */
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', function() {
+				navigator.serviceWorker.register('./service-worker.js')
+				.then(function(registration) {
+					console.log('Service Worker registrado com sucesso:', registration.scope);
+				})
+				.catch(function(err) {
+					console.log('Falha ao registrar o Service Worker:', err);
+				});
+			});
+		}
+
+		/**
+		 * Desabilitar efeitos de eventos de click, cursor e navegação por teclas.
+		 */
+		document.addEventListener('contextmenu', (e) => { e.preventDefault() });
+		
+		// Removemos o evento global de preventDefault para permitir interações com vídeos
+		// document.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
+
+		/**
+		 * Objetos.
+		 */
+		const fullscreen = document.querySelector('#logo');
+		const voltar = document.querySelector('#voltar');
+		const body = document.querySelector('body');
+		const abrirvideos = document.querySelectorAll('.abrir-video');
+		const videos = document.querySelectorAll('.video');
+		let videoAtual = null;
+		
+		/**
+		 * Ação de tornar full screen.
+		 */
+		window.addEventListener('DOMContentLoaded', () => {
+			console.log('DOMContentLoaded - Iniciando configuração...');
+			console.log('Plataforma detectada:', navigator.userAgent);
+			console.log('Testando URLs dos vídeos...');
+
+			// Função para criar caminhos de vídeos válidos de forma dinâmica
+			const makeVideoPaths = () => {
+				const videoNames = [
+					'HISTORIA-1-MICHA',
+					'HISTORIA-2-GALILEU',
+					'HISTORIA-3-RAFA',
+					'HISTORIA-4-CAMILA',
+					'VINHETA-3',
+				];
+				
+				// Atualizar atributos src para todos os vídeos
+				const videoElements = document.querySelectorAll('.video video');
+				for (let i = 0; i < Math.min(videoElements.length, videoNames.length); i++) {
+					const videoPath = `videos/${videoNames[i]}.mp4`;
+					videoElements[i].src = videoPath;
+					console.log(`Definido caminho de vídeo: ${videoPath}`);
+				}
+			};
+			
+			// Executar a configuração dos caminhos de vídeo
+			makeVideoPaths();
+			
+			fullscreen.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				
+				// Verifica se já existe algum vídeo aberto
+				const videosAbertos = document.querySelectorAll('.video.aberto');
+				if (videosAbertos.length > 0) {
+					return; // Não permite entrar em fullscreen se há vídeo aberto
+				}
+				
+				try {
+					if (!document.documentElement.webkitRequestFullScreen) {
+						body.requestFullscreen();
+					} else {
+						body.webkitRequestFullscreen();
+					}
+				} catch (err) {
+					console.error('Erro ao entrar em modo fullscreen:', err);
+				}
+			});
+
+			// Verificar conexão
+			console.log('Verificando conexão e videos...');
+			
+			// Verificar disponibilidade de vídeos e ajustar URLs
+			const checkVideoUrls = function() {
+				document.querySelectorAll('.video video').forEach(video => {
+					// Verificar se a URL está correta
+					const currentSrc = video.getAttribute('src');
+					console.log('Verificando vídeo:', currentSrc);
+					
+					// Testar a URL atual
+					fetch(currentSrc, { method: 'HEAD' })
+						.then(response => {
+							if (!response.ok) {
+								console.warn(`Vídeo não encontrado em ${currentSrc}, tentando URL alternativa...`);
+								
+								// Tentar URL alternativa
+								const filename = currentSrc.split('/').pop();
+								let filenameWithoutHyphen = filename.replace(/-/g, ' ');
+								let filenameWithHyphen = filename.includes('-') ? filename : filename.replace(/ /g, '-');
+								
+								const alternativePaths = [
+									`./videos/${filename}`,
+									`videos/${filename}`,
+									`./videos/${filenameWithoutHyphen}`,
+									`videos/${filenameWithoutHyphen}`,
+									`./videos/${filenameWithHyphen}`,
+									`videos/${filenameWithHyphen}`,
+									`./${filename}`,
+									`../videos/${filename}`
+								];
+								
+								// Testar caminhos alternativos
+								testNextPath(video, alternativePaths, 0);
+							} else {
+								console.log(`Vídeo encontrado em ${currentSrc}`);
+							}
+						})
+						.catch(err => {
+							console.error(`Erro ao verificar ${currentSrc}:`, err);
+							// Tentar URLs alternativas
+							const filename = currentSrc.split('/').pop();
+							let filenameWithoutHyphen = filename.replace(/-/g, ' ');
+							let filenameWithHyphen = filename.includes('-') ? filename : filename.replace(/ /g, '-');
+							
+							const alternativePaths = [
+								`./videos/${filename}`,
+								`videos/${filename}`,
+								`./videos/${filenameWithoutHyphen}`,
+								`videos/${filenameWithoutHyphen}`,
+								`./videos/${filenameWithHyphen}`,
+								`videos/${filenameWithHyphen}`,
+								`./${filename}`,
+								`../videos/${filename}`
+							];
+							
+							testNextPath(video, alternativePaths, 0);
+						});
+				});
+			};
+			
+			// Função recursiva para testar caminhos alternativos
+			const testNextPath = function(videoElement, paths, index) {
+				if (index >= paths.length) {
+					console.error('Todos os caminhos falharam para:', videoElement);
+					// Tentar reproduzir mesmo assim, usando o caminho original
+					console.log('Tentando reproduzir com caminho original como último recurso');
+					return;
+				}
+				
+				console.log(`Testando caminho alternativo ${index+1}/${paths.length}: ${paths[index]}`);
+				
+				fetch(paths[index], { method: 'HEAD' })
+					.then(response => {
+						if (response.ok) {
+							console.log(`Vídeo encontrado em ${paths[index]}`);
+							videoElement.setAttribute('src', paths[index]);
+							console.log('URL do vídeo atualizada para:', paths[index]);
+							
+							// Precarregar o vídeo
+							videoElement.load();
+						} else {
+							// Tentar próximo caminho
+							testNextPath(videoElement, paths, index + 1);
+						}
+					})
+					.catch(() => {
+						// Tentar próximo caminho
+						testNextPath(videoElement, paths, index + 1);
+					});
+			};
+			
+			// Executar verificação de URLs após um pequeno atraso
+			setTimeout(checkVideoUrls, 500);
+
+			// Inicializar vídeos para iOS
+			document.querySelectorAll('.video video').forEach(video => {
+				// Garantir que os atributos corretos estejam presentes para iOS
+				video.setAttribute('playsinline', '');
+				video.setAttribute('webkit-playsinline', '');
+				video.setAttribute('preload', 'auto');
+				video.setAttribute('muted', '');
+				video.setAttribute('disablepictureinpicture', '');
+				
+				// Verificar se o vídeo pode ser carregado
+				video.addEventListener('error', function(e) {
+					console.error('Erro ao carregar vídeo:', video.src, e);
+				});
+				
+				// Adicionar evento para confirmar quando o vídeo estiver pronto
+				video.addEventListener('canplaythrough', function() {
+					console.log('Vídeo pronto para reprodução:', video.src);
+					// Adicionar classe para indicar que o vídeo está pronto
+					video.classList.add('ready');
+				});
+				
+				// Precarregar o vídeo explicitamente
+				video.load();
+				
+				// Permitir interação direta com o vídeo
+				video.style.pointerEvents = 'auto';
+				
+				// Adicionar manipulador de clique para iOS
+				video.addEventListener('click', function() {
+					if (video.muted) {
+						console.log('Usuário clicou no vídeo, ativando som...');
+						video.muted = false;
+						video.play().catch(err => {
+							console.error('Erro ao ativar som após clique direto:', err);
+						});
+					}
+				});
+			});
+
+			// Desbloquear áudio no iOS
+			const unlockAudio = function() {
+				console.log('Tentando desbloquear áudio para iOS...');
+				
+				// Tocar e pausar todos os vídeos para desbloquear áudio
+				document.querySelectorAll('video').forEach(video => {
+					video.muted = true;
+					let playPromise = video.play();
+					
+					if (playPromise !== undefined) {
+						playPromise.then(() => {
+							// Sucesso, pausar o vídeo
+							video.pause();
+							video.currentTime = 0;
+							console.log('Áudio desbloqueado com sucesso');
+						}).catch(err => {
+							console.error('Erro ao desbloquear áudio:', err);
+						});
+					}
+				});
+				
+				// Remover o listener após a primeira execução
+				document.removeEventListener('touchstart', unlockAudio);
+				document.removeEventListener('click', unlockAudio);
+			};
+			
+			// Adicionar listeners para desbloquear áudio
+			document.addEventListener('touchstart', unlockAudio, {once: true});
+			document.addEventListener('click', unlockAudio, {once: true});
+		});
+
+		/**
+		 * Monitorar alteração no estado de full screen.
+		 */
+		window.addEventListener('fullscreenchange', () => {
+			if (!document.fullScreenElement && !document.webkitFullScreenElement) {
+				fullscreen.classList.remove('hide');
+			}
+		});
+
+		/**
+		 * Fechar vídeos.
+		 */
+		voltar.addEventListener('click', (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			derrubar_videos();
+		});
+
+		/**
+		 * Abrir vídeo.
+		 */
+		abrirvideos.forEach((obj) => {
+			// Garantir que o elemento possa receber cliques
+			obj.style.pointerEvents = 'auto';
+			obj.style.cursor = 'pointer';
+			
+			obj.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				console.log('Clique no card de vídeo:', obj.getAttribute('idx'));
+				
+				// Fechar qualquer vídeo que esteja aberto
+				derrubar_videos();
+				
+				let idx = obj.getAttribute('idx');
+				let vd = document.querySelectorAll('.video')[idx];
+				
+				// Verificar se o elemento contém vídeo ou é a programação
+				if (vd.querySelector('video')) {
+					let video = vd.querySelector('video');
+					videoAtual = video;
+					
+					// Resetar vídeo
+					video.currentTime = 0;
+					
+					// Adicionar controles e permitir interações
+					video.controls = true;
+					video.style.pointerEvents = 'auto';
+					
+					// Abrir o container do vídeo
+					vd.classList.add('aberto');
+					obj.classList.add('aberto');
+					voltar.classList.add('aberto');
+					body.classList.add('aberto');
+					abrirvideos[0].parentElement.classList.add('aberto');
+					
+					// Verificar se o vídeo já foi carregado antes de tentar reproduzir
+					if (!video.readyState) {
+						console.log('Vídeo ainda não carregado, tentando carregar...');
+						video.load();
+					}
+					
+					try {
+						// Para iOS, tentar reproduzir o vídeo mudo primeiro e depois ativar o som
+						if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+							console.log('Detectado iOS, iniciando reprodução muda...');
+							
+							// Garantir que esteja mudo inicialmente para autoplay
+							video.muted = true;
+							
+							// Reproduzir o vídeo
+							setTimeout(() => {
+								let playPromise = video.play();
+								
+								if (playPromise !== undefined) {
+									playPromise.then(() => {
+										console.log('Vídeo iniciado mudo, botão para ativar som será mostrado');
+										
+										// Adicionar botão para ativar som (iOS requer interação do usuário)
+										const soundButton = document.createElement('button');
+										soundButton.textContent = 'Ativar Som';
+										soundButton.style.position = 'absolute';
+										soundButton.style.zIndex = '1000';
+										soundButton.style.top = '50%';
+										soundButton.style.left = '50%';
+										soundButton.style.transform = 'translate(-50%, -50%)';
+										soundButton.style.padding = '15px 30px';
+										soundButton.style.background = '#6a3aef';
+										soundButton.style.color = '#fff';
+										soundButton.style.border = 'none';
+										soundButton.style.borderRadius = '5px';
+										soundButton.style.fontWeight = 'bold';
+										soundButton.style.fontSize = '18px';
+										soundButton.style.cursor = 'pointer';
+										soundButton.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
+										
+										soundButton.onclick = function(e) {
+											e.preventDefault();
+											e.stopPropagation();
+											video.muted = false;
+											this.remove();
+											
+											// Tentar reproduzir novamente para garantir
+											video.play().catch(err => {
+												console.error('Erro ao reproduzir com som:', err);
+												// Se ainda houver erro, mostrar controles
+												video.controls = true;
+											});
+										};
+										
+										vd.appendChild(soundButton);
+									}).catch(err => {
+										console.error('Erro ao iniciar vídeo:', err);
+										// Mostrar controles para permitir reprodução manual
+										video.controls = true;
+									});
+								}
+							}, 300); // Pequeno atraso para garantir que o DOM foi atualizado
+						} else {
+							// Para outros dispositivos, reproduzir normalmente
+							video.muted = false;
+							setTimeout(() => {
+								video.play().catch(err => {
+									console.error('Erro ao reproduzir:', err);
+									// Mostrar controles para permitir reprodução manual
+									video.controls = true;
+								});
+							}, 300);
+						}
+						
+						// Detectar orientação do vídeo e adicionar classe apropriada
+						setTimeout(() => {
+							if (video.videoHeight > video.videoWidth) {
+								video.classList.add('vertical');
+								video.classList.remove('horizontal');
+							} else {
+								video.classList.add('horizontal');
+								video.classList.remove('vertical');
+							}
+						}, 100);
+						
+						// Adicionar evento para tratamento de toques no vídeo
+						video.addEventListener('touchstart', function(e) {
+							e.stopPropagation();
+						});
+					} catch(err) {
+						console.error('Erro ao tentar reproduzir vídeo:', err);
+						video.controls = true;
+					}
+				} else if (vd.querySelector('.programacao-container')) {
+					console.log('Abrindo tela de programação');
+					// Permitir eventos de rolagem para o container de programação
+					vd.style.pointerEvents = 'auto';
+					
+					// Adiciona evento específico para permitir a rolagem sem fechar
+					let progContainer = vd.querySelector('.programacao-container');
+					
+					// Remove o evento de preventDefault para permitir rolagem
+					progContainer.addEventListener('click', function(e) {
+						e.stopPropagation(); // Previne que o clique feche o card
+					});
+					
+					progContainer.addEventListener('touchstart', function(e) {
+						e.stopPropagation(); // Previne que o toque feche o card
+					});
+					
+					progContainer.addEventListener('touchmove', function(e) {
+						e.stopPropagation(); // Permite rolagem no touch
+					});
+					
+					progContainer.addEventListener('wheel', function(e) {
+						e.stopPropagation(); // Permite rolagem com mouse wheel
+					});
+					
+					// Configurar navegação entre imagens
+					const navButtons = vd.querySelectorAll('.nav-button');
+					if (navButtons.length > 0) {
+						navButtons.forEach(button => {
+							button.addEventListener('click', function(e) {
+								e.stopPropagation();
+								
+								// Obter o ID da imagem alvo
+								const targetId = this.getAttribute('data-target');
+								const targetImg = document.getElementById(targetId);
+								
+								if (targetImg) {
+									// Rolar até a imagem alvo
+									targetImg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+								}
+							});
+						});
+					}
+				}
+				
+				vd.classList.add('aberto');
+				obj.classList.add('aberto');
+				voltar.classList.add('aberto');
+				body.classList.add('aberto');
+				abrirvideos[0].parentElement.classList.add('aberto');
+			});
+		});
+
+		/**
+		 * Função para fechar todos os vídeos
+		 */
+		function derrubar_videos() {
+			console.log('Fechando todos os vídeos');
+			
+			// Remover qualquer botão de ativar som que possa existir
+			document.querySelectorAll('button[style*="position: absolute"]').forEach(btn => {
+				btn.remove();
+			});
+			
+			// Remover classes 'aberto'
+			document.querySelectorAll('.aberto').forEach((obj) => {
+				obj.classList.remove('aberto');
+			});
+			
+			// Reiniciar posição de rolagem da programação
+			const progContainer = document.querySelector('.programacao-container');
+			if (progContainer) {
+				progContainer.scrollTop = 0;
+			}
+			
+			// Pausar e resetar todos os vídeos
+			videos.forEach((vid) => {
+				let vid_tag = vid.querySelector('video');
+				if (vid_tag) {
+					try {
+						// Pausar o vídeo
+						vid_tag.pause();
+						
+						// Resetar a posição
+						vid_tag.currentTime = 0;
+						
+						// Verificar e remover manipuladores de eventos duplicados
+						const newVideoElement = vid_tag.cloneNode(true);
+						newVideoElement.classList = vid_tag.classList;
+						
+						// Configurar novamente os atributos essenciais
+						newVideoElement.setAttribute('playsinline', '');
+						newVideoElement.setAttribute('webkit-playsinline', '');
+						newVideoElement.setAttribute('preload', 'auto');
+						newVideoElement.setAttribute('muted', '');
+						newVideoElement.setAttribute('disablepictureinpicture', '');
+						newVideoElement.style.pointerEvents = 'auto';
+						
+						// Substituir o elemento antigo
+						vid_tag.parentNode.replaceChild(newVideoElement, vid_tag);
+						
+						// Garantir que o vídeo seja precarregado
+						newVideoElement.load();
+					} catch(err) {
+						console.error('Erro ao resetar vídeo:', err);
+					}
+				}
+			});
+			
+			// Limpar referência ao vídeo atual
+			videoAtual = null;
+		}
+
+		// Adicionar tratamento para eventos de teclado
+		document.addEventListener('keydown', function(e) {
+			// ESC para fechar vídeos
+			if (e.key === 'Escape') {
+				derrubar_videos();
+			}
+		});
+
+		/**
+		 * Abrir QR codes.
+		 */
+		if (document.querySelector('#qr-left') !== null) {
+			document.querySelector('#qr-left').addEventListener('click', () => {
+				document.querySelector('#qr-banner-left').classList.add('aberto');
+			});
+		}
+		if (document.querySelector('#qr-right') != null) {
+			document.querySelector('#qr-right').addEventListener('click', () => {
+				document.querySelector('#qr-banner-right').classList.add('aberto');
+			});
+		}
+		if (document.querySelector('#qr-banner-left') !== null) {
+			document.querySelector('#qr-banner-left').addEventListener('click', () => {
+				document.querySelector('#qr-banner-left').classList.remove('aberto');
+			});
+		}
+		if (document.querySelector('#qr-banner-right') !== null) {
+			document.querySelector('#qr-banner-right').addEventListener('click', () => {
+				document.querySelector('#qr-banner-right').classList.remove('aberto');
+			});
+		}
+
+		// Detecção para dispositivos móveis para otimizar a experiência
+		const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+		if (isMobile) {
+			console.log('Dispositivo móvel detectado, otimizando interface');
+			// Ajustes específicos para dispositivos móveis podem ser adicionados aqui
+		}
+	</script>
+
+</body>
+</html>

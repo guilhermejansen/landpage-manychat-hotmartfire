@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Não Encontrada - Manychat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', 'Montserrat', 'Helvetica', Arial, sans-serif;
+            background-color: #F0F0F0;
+            color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-out;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo {
+            max-width: 150px;
+            margin: 0 auto 30px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #0078D7;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .error-code {
+            font-size: 10rem;
+            font-weight: 700;
+            color: #0078D7;
+            opacity: 0.1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            animation: pulse 3s infinite ease-in-out;
+            user-select: none;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #0078D7;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            background-color: #005fa3;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 120, 215, 0.3);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .btn:hover::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        .status-indicator {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        .status-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            border: 3px solid #0078D7;
+            opacity: 0.2;
+        }
+        
+        .status-circle:nth-child(1) {
+            animation: circle-1 2s infinite ease-in-out;
+        }
+        
+        .status-circle:nth-child(2) {
+            animation: circle-2 2s infinite ease-in-out;
+        }
+        
+        .status-circle:nth-child(3) {
+            animation: circle-3 2s infinite ease-in-out;
+        }
+        
+        .status-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            color: #0078D7;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.15; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+        }
+        
+        @keyframes ripple {
+            0% { transform: scale(0, 0); opacity: 1; }
+            20% { transform: scale(25, 25); opacity: 1; }
+            100% { transform: scale(50, 50); opacity: 0; }
+        }
+        
+        @keyframes circle-1 {
+            0% { transform: scale(0.8); opacity: 0.3; }
+            50% { transform: scale(1); opacity: 0.2; }
+            100% { transform: scale(0.8); opacity: 0.3; }
+        }
+        
+        @keyframes circle-2 {
+            0% { transform: scale(0.7); opacity: 0.1; }
+            50% { transform: scale(0.9); opacity: 0.15; }
+            100% { transform: scale(0.7); opacity: 0.1; }
+        }
+        
+        @keyframes circle-3 {
+            0% { transform: scale(0.6); opacity: 0.05; }
+            50% { transform: scale(0.8); opacity: 0.1; }
+            100% { transform: scale(0.6); opacity: 0.05; }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 30px;
+            }
+            
+            .status-indicator {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-code">404</div>
+    
+    <div class="container">
+        <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 30" fill="#0078D7">
+                <path d="M20,5 L80,5 C85,5 90,10 90,15 C90,20 85,25 80,25 L20,25 C15,25 10,20 10,15 C10,10 15,5 20,5 Z M30,10 L30,20 L35,15 L30,10 Z M45,10 L45,20 L50,15 L45,10 Z M60,10 L60,20 L65,15 L60,10 Z"/>
+            </svg>
+        </div>
+        
+        <div class="status-indicator">
+            <div class="status-circle"></div>
+            <div class="status-circle"></div>
+            <div class="status-circle"></div>
+            <svg class="status-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm6.31-3.1L7.1 5.69C8.45 4.63 10.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"/>
+            </svg>
+        </div>
+        
+        <h1>Página não encontrada</h1>
+        
+        <p>Ops! A página que você está procurando não existe ou foi movida. Verifique o endereço ou volte para a página inicial.</p>
+        
+        <a href="/" class="btn">Voltar para a página inicial</a>
+    </div>
+    
+    <script>
+        // Animação quando o botão é clicado
+        document.querySelector('.btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(function() {
+                window.location.href = '/';
+            }, 500);
+        });
+    </script>
+</body>
+</html> 

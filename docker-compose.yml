@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  manychat-display:
+    image: setupautomatizado/manychat-display:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+        failure_action: rollback
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.manychat.rule=Host(`manychat.portalcamaleao.com.br`)"
+        - "traefik.http.routers.manychat.entrypoints=websecure"
+        - "traefik.http.routers.manychat.tls=true"
+        - "traefik.http.routers.manychat.tls.certresolver=letsencrypt"
+        - "traefik.http.services.manychat.loadbalancer.server.port=3000"
+        - "traefik.http.middlewares.manychat-compress.compress=true"
+        - "traefik.http.routers.manychat.middlewares=manychat-compress"
+        # Configuração para grande arquivos
+        - "traefik.http.middlewares.manychat-buffer.buffering.maxRequestBodyBytes=500000000"
+        - "traefik.http.middlewares.manychat-buffer.buffering.memRequestBodyBytes=50000000"
+        - "traefik.http.middlewares.manychat-buffer.buffering.maxResponseBodyBytes=500000000"
+        - "traefik.http.middlewares.manychat-buffer.buffering.memResponseBodyBytes=50000000"
+        - "traefik.http.routers.manychat.middlewares=manychat-compress,manychat-buffer"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+        mode: host
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    volumes:
+      - manychat_videos:/app/public/videos
+      - manychat_imagens:/app/public/imagens
+    networks:
+      - network_public
+
+volumes:
+  manychat_videos:
+    external: true
+    name: manychat_videos
+  manychat_imagens:
+    external: true
+    name: manychat_imagens
+
+networks:
+  network_public:
+    name: network_public
+    external: true  
