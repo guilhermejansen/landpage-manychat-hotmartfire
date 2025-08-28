@@ -1,6 +1,6 @@
 # Manychat Display
 
-Aplicação interativa para exibição de vídeos com interface touch-friendly para o Web Summit Rio 2025.
+Aplicação interativa para exibição de vídeos com interface touch-friendly para o Hotmart Fire 2025.
 
 ## Requisitos
 
