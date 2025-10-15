@@ -7,7 +7,7 @@
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
-	<title>Manychat - Hotmart Fire 2025</title>
+	<title>Manychat - Sebrae 2025</title>
 
 
 
@@ -196,19 +196,19 @@
 		box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 		transition: transform 0.3s ease, background-color 0.3s ease;
 	}
-	
+
 	@media (max-width: 768px) {
 		.play {
 			width: 30px;
 			height: 30px;
 		}
 	}
-	
+
 	.abrir-video:hover .play {
 		transform: translateX(-50%) scale(1.1);
 		background: #8252ff;
 	}
-	
+
 	.play img {
 		width: 40%;
 		height: 40%;
@@ -699,7 +699,7 @@
 		width: 100%;
 		margin-bottom: 40px;
 	}
-	
+
 	.programacao-img {
 		max-width: 100%;
 		height: auto;
@@ -707,7 +707,7 @@
 		display: block;
 		margin: 0 auto;
 	}
-	
+
 	.nav-buttons {
 		position: absolute;
 		top: 15px;
@@ -715,12 +715,12 @@
 		display: flex;
 		z-index: 200;
 	}
-	
+
 	.nav-buttons.bottom-nav {
 		top: auto;
 		bottom: 15px;
 	}
-	
+
 	.nav-button {
 		width: 45px;
 		height: 45px;
@@ -735,12 +735,12 @@
 		transition: background-color 0.3s ease, transform 0.3s ease;
 		-webkit-tap-highlight-color: transparent;
 	}
-	
+
 	.nav-button:hover, .nav-button:active {
 		background-color: #8252ff;
 		transform: scale(1.1);
 	}
-	
+
 	.nav-button:after {
 		content: '';
 		width: 14px;
@@ -749,15 +749,15 @@
 		border-bottom: 3px solid white;
 		display: block;
 	}
-	
+
 	.nav-button.prev:after {
 		transform: rotate(-135deg) translateY(2px);
 	}
-	
+
 	.nav-button.next:after {
 		transform: rotate(45deg) translateY(-2px);
 	}
-	
+
 	.scroll-indicator {
 		position: fixed;
 		bottom: 20px;
@@ -774,7 +774,7 @@
 		box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 		transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
 	}
-	
+
 	.scroll-indicator:after {
 		content: '';
 		width: 12px;
@@ -784,15 +784,15 @@
 		transform: rotate(45deg) translateY(-3px);
 		transition: transform 0.3s ease;
 	}
-	
+
 	.scroll-indicator.up:after {
 		transform: rotate(-135deg) translateY(3px);
 	}
-	
+
 	.scroll-indicator:hover {
 		background-color: #8252ff;
 	}
-	
+
 	@keyframes bounce {
 		0%, 20%, 50%, 80%, 100% {
 			transform: translateY(0);
@@ -811,7 +811,7 @@
 <body oncontextmenu="return false;">
 
 	<img src="./imagens/manychat-logo.svg" alt="Manychat" id="logo">
-	<img src="./imagens/quer-saber.png" alt="Confira nossa programação para o Hotmart Fire 2025!" id="intro">
+	<img src="./imagens/quer-saber.png" alt="Confira nossa programação para o Sebrea 2025!" id="intro">
 
 	<div id="bg"></div>
 
@@ -821,11 +821,11 @@
 	<div id="videos">
 		<div class="abrir-video" idx="4">
 			<div class="base-anim"></div>
-			<img src="./imagens/plays/veja-quem-usa-manychat.png" alt="Veja quem usa a Manychat" class="btn-txt">
+			<img src="./imagens/plays/case-contando-estrelas.png" alt="Case Contando Estrelas" class="btn-txt">
 			<div class="play">
 				<img src="./imagens/play.svg" alt="play">
 			</div>
-		</div>		
+		</div>
 		<div class="abrir-video" idx="0">
 			<div class="base-anim"></div>
 			<img src="./imagens/plays/case-micha-menezes.png" alt="Case Micha Menezes" class="btn-txt">
@@ -835,7 +835,7 @@
 		</div>
 		<div class="abrir-video" idx="3">
 			<div class="base-anim"></div>
-			<img src="./imagens/plays/case-camila-farani.png" alt="Case Camila Farani" class="btn-txt">
+			<img src="./imagens/plays/case-leticia-vaz.png" alt="Case Letícia Vaz" class="btn-txt">
 			<div class="play">
 				<img src="./imagens/play.svg" alt="play">
 			</div>
@@ -866,10 +866,10 @@
 		<video src="videos/HISTORIA-3-RAFA.mp4" playsinline webkit-playsinline preload="auto" muted></video>
 	</div>
 	<div class="video">
-		<video src="videos/HISTORIA-4-CAMILA.mp4" playsinline webkit-playsinline preload="auto" muted></video>
+		<video src="videos/HISTORIA-4-LETICIA.mp4" playsinline webkit-playsinline preload="auto" muted></video>
 	</div>
 	<div class="video">
-		<video src="videos/VINHETA-3.mp4" playsinline webkit-playsinline preload="auto" muted></video>
+		<video src="videos/CONTANDO-ESTRELAS.mp4" playsinline webkit-playsinline preload="auto" muted></video>
 	</div>
 	</div>
 
@@ -917,7 +917,7 @@
 		 * Desabilitar efeitos de eventos de click, cursor e navegação por teclas.
 		 */
 		document.addEventListener('contextmenu', (e) => { e.preventDefault() });
-		
+
 		// Removemos o evento global de preventDefault para permitir interações com vídeos
 		// document.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
 
@@ -930,7 +930,7 @@
 		const abrirvideos = document.querySelectorAll('.abrir-video');
 		const videos = document.querySelectorAll('.video');
 		let videoAtual = null;
-		
+
 		/**
 		 * Ação de tornar full screen.
 		 */
@@ -945,10 +945,10 @@
 					'HISTORIA-1-MICHA',
 					'HISTORIA-2-GALILEU',
 					'HISTORIA-3-RAFA',
-					'HISTORIA-4-CAMILA',
-					'VINHETA-3',
+					'HISTORIA-4-LETICIA',
+					'CONTANDO-ESTRELAS',
 				];
-				
+
 				// Atualizar atributos src para todos os vídeos
 				const videoElements = document.querySelectorAll('.video video');
 				for (let i = 0; i < Math.min(videoElements.length, videoNames.length); i++) {
@@ -957,20 +957,20 @@
 					console.log(`Definido caminho de vídeo: ${videoPath}`);
 				}
 			};
-			
+
 			// Executar a configuração dos caminhos de vídeo
 			makeVideoPaths();
-			
+
 			fullscreen.addEventListener('click', (e) => {
 				e.preventDefault();
 				e.stopPropagation();
-				
+
 				// Verifica se já existe algum vídeo aberto
 				const videosAbertos = document.querySelectorAll('.video.aberto');
 				if (videosAbertos.length > 0) {
 					return; // Não permite entrar em fullscreen se há vídeo aberto
 				}
-				
+
 				try {
 					if (!document.documentElement.webkitRequestFullScreen) {
 						body.requestFullscreen();
@@ -984,25 +984,25 @@
 
 			// Verificar conexão
 			console.log('Verificando conexão e videos...');
-			
+
 			// Verificar disponibilidade de vídeos e ajustar URLs
 			const checkVideoUrls = function() {
 				document.querySelectorAll('.video video').forEach(video => {
 					// Verificar se a URL está correta
 					const currentSrc = video.getAttribute('src');
 					console.log('Verificando vídeo:', currentSrc);
-					
+
 					// Testar a URL atual
 					fetch(currentSrc, { method: 'HEAD' })
 						.then(response => {
 							if (!response.ok) {
 								console.warn(`Vídeo não encontrado em ${currentSrc}, tentando URL alternativa...`);
-								
+
 								// Tentar URL alternativa
 								const filename = currentSrc.split('/').pop();
 								let filenameWithoutHyphen = filename.replace(/-/g, ' ');
 								let filenameWithHyphen = filename.includes('-') ? filename : filename.replace(/ /g, '-');
-								
+
 								const alternativePaths = [
 									`./videos/${filename}`,
 									`videos/${filename}`,
@@ -1013,7 +1013,7 @@
 									`./${filename}`,
 									`../videos/${filename}`
 								];
-								
+
 								// Testar caminhos alternativos
 								testNextPath(video, alternativePaths, 0);
 							} else {
@@ -1026,7 +1026,7 @@
 							const filename = currentSrc.split('/').pop();
 							let filenameWithoutHyphen = filename.replace(/-/g, ' ');
 							let filenameWithHyphen = filename.includes('-') ? filename : filename.replace(/ /g, '-');
-							
+
 							const alternativePaths = [
 								`./videos/${filename}`,
 								`videos/${filename}`,
@@ -1037,12 +1037,12 @@
 								`./${filename}`,
 								`../videos/${filename}`
 							];
-							
+
 							testNextPath(video, alternativePaths, 0);
 						});
 				});
 			};
-			
+
 			// Função recursiva para testar caminhos alternativos
 			const testNextPath = function(videoElement, paths, index) {
 				if (index >= paths.length) {
@@ -1051,16 +1051,16 @@
 					console.log('Tentando reproduzir com caminho original como último recurso');
 					return;
 				}
-				
+
 				console.log(`Testando caminho alternativo ${index+1}/${paths.length}: ${paths[index]}`);
-				
+
 				fetch(paths[index], { method: 'HEAD' })
 					.then(response => {
 						if (response.ok) {
 							console.log(`Vídeo encontrado em ${paths[index]}`);
 							videoElement.setAttribute('src', paths[index]);
 							console.log('URL do vídeo atualizada para:', paths[index]);
-							
+
 							// Precarregar o vídeo
 							videoElement.load();
 						} else {
@@ -1073,7 +1073,7 @@
 						testNextPath(videoElement, paths, index + 1);
 					});
 			};
-			
+
 			// Executar verificação de URLs após um pequeno atraso
 			setTimeout(checkVideoUrls, 500);
 
@@ -1085,25 +1085,25 @@
 				video.setAttribute('preload', 'auto');
 				video.setAttribute('muted', '');
 				video.setAttribute('disablepictureinpicture', '');
-				
+
 				// Verificar se o vídeo pode ser carregado
 				video.addEventListener('error', function(e) {
 					console.error('Erro ao carregar vídeo:', video.src, e);
 				});
-				
+
 				// Adicionar evento para confirmar quando o vídeo estiver pronto
 				video.addEventListener('canplaythrough', function() {
 					console.log('Vídeo pronto para reprodução:', video.src);
 					// Adicionar classe para indicar que o vídeo está pronto
 					video.classList.add('ready');
 				});
-				
+
 				// Precarregar o vídeo explicitamente
 				video.load();
-				
+
 				// Permitir interação direta com o vídeo
 				video.style.pointerEvents = 'auto';
-				
+
 				// Adicionar manipulador de clique para iOS
 				video.addEventListener('click', function() {
 					if (video.muted) {
@@ -1119,12 +1119,12 @@
 			// Desbloquear áudio no iOS
 			const unlockAudio = function() {
 				console.log('Tentando desbloquear áudio para iOS...');
-				
+
 				// Tocar e pausar todos os vídeos para desbloquear áudio
 				document.querySelectorAll('video').forEach(video => {
 					video.muted = true;
 					let playPromise = video.play();
-					
+
 					if (playPromise !== undefined) {
 						playPromise.then(() => {
 							// Sucesso, pausar o vídeo
@@ -1136,12 +1136,12 @@
 						});
 					}
 				});
-				
+
 				// Remover o listener após a primeira execução
 				document.removeEventListener('touchstart', unlockAudio);
 				document.removeEventListener('click', unlockAudio);
 			};
-			
+
 			// Adicionar listeners para desbloquear áudio
 			document.addEventListener('touchstart', unlockAudio, {once: true});
 			document.addEventListener('click', unlockAudio, {once: true});
@@ -1172,59 +1172,59 @@
 			// Garantir que o elemento possa receber cliques
 			obj.style.pointerEvents = 'auto';
 			obj.style.cursor = 'pointer';
-			
+
 			obj.addEventListener('click', (e) => {
 				e.preventDefault();
 				e.stopPropagation();
 				console.log('Clique no card de vídeo:', obj.getAttribute('idx'));
-				
+
 				// Fechar qualquer vídeo que esteja aberto
 				derrubar_videos();
-				
+
 				let idx = obj.getAttribute('idx');
 				let vd = document.querySelectorAll('.video')[idx];
-				
+
 				// Verificar se o elemento contém vídeo ou é a programação
 				if (vd.querySelector('video')) {
 					let video = vd.querySelector('video');
 					videoAtual = video;
-					
+
 					// Resetar vídeo
 					video.currentTime = 0;
-					
+
 					// Adicionar controles e permitir interações
 					video.controls = true;
 					video.style.pointerEvents = 'auto';
-					
+
 					// Abrir o container do vídeo
 					vd.classList.add('aberto');
 					obj.classList.add('aberto');
 					voltar.classList.add('aberto');
 					body.classList.add('aberto');
 					abrirvideos[0].parentElement.classList.add('aberto');
-					
+
 					// Verificar se o vídeo já foi carregado antes de tentar reproduzir
 					if (!video.readyState) {
 						console.log('Vídeo ainda não carregado, tentando carregar...');
 						video.load();
 					}
-					
+
 					try {
 						// Para iOS, tentar reproduzir o vídeo mudo primeiro e depois ativar o som
 						if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 							console.log('Detectado iOS, iniciando reprodução muda...');
-							
+
 							// Garantir que esteja mudo inicialmente para autoplay
 							video.muted = true;
-							
+
 							// Reproduzir o vídeo
 							setTimeout(() => {
 								let playPromise = video.play();
-								
+
 								if (playPromise !== undefined) {
 									playPromise.then(() => {
 										console.log('Vídeo iniciado mudo, botão para ativar som será mostrado');
-										
+
 										// Adicionar botão para ativar som (iOS requer interação do usuário)
 										const soundButton = document.createElement('button');
 										soundButton.textContent = 'Ativar Som';
@@ -1242,13 +1242,13 @@
 										soundButton.style.fontSize = '18px';
 										soundButton.style.cursor = 'pointer';
 										soundButton.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
-										
+
 										soundButton.onclick = function(e) {
 											e.preventDefault();
 											e.stopPropagation();
 											video.muted = false;
 											this.remove();
-											
+
 											// Tentar reproduzir novamente para garantir
 											video.play().catch(err => {
 												console.error('Erro ao reproduzir com som:', err);
@@ -1256,7 +1256,7 @@
 												video.controls = true;
 											});
 										};
-										
+
 										vd.appendChild(soundButton);
 									}).catch(err => {
 										console.error('Erro ao iniciar vídeo:', err);
@@ -1276,7 +1276,7 @@
 								});
 							}, 300);
 						}
-						
+
 						// Detectar orientação do vídeo e adicionar classe apropriada
 						setTimeout(() => {
 							if (video.videoHeight > video.videoWidth) {
@@ -1287,7 +1287,7 @@
 								video.classList.remove('vertical');
 							}
 						}, 100);
-						
+
 						// Adicionar evento para tratamento de toques no vídeo
 						video.addEventListener('touchstart', function(e) {
 							e.stopPropagation();
@@ -1300,38 +1300,38 @@
 					console.log('Abrindo tela de programação');
 					// Permitir eventos de rolagem para o container de programação
 					vd.style.pointerEvents = 'auto';
-					
+
 					// Adiciona evento específico para permitir a rolagem sem fechar
 					let progContainer = vd.querySelector('.programacao-container');
-					
+
 					// Remove o evento de preventDefault para permitir rolagem
 					progContainer.addEventListener('click', function(e) {
 						e.stopPropagation(); // Previne que o clique feche o card
 					});
-					
+
 					progContainer.addEventListener('touchstart', function(e) {
 						e.stopPropagation(); // Previne que o toque feche o card
 					});
-					
+
 					progContainer.addEventListener('touchmove', function(e) {
 						e.stopPropagation(); // Permite rolagem no touch
 					});
-					
+
 					progContainer.addEventListener('wheel', function(e) {
 						e.stopPropagation(); // Permite rolagem com mouse wheel
 					});
-					
+
 					// Configurar navegação entre imagens
 					const navButtons = vd.querySelectorAll('.nav-button');
 					if (navButtons.length > 0) {
 						navButtons.forEach(button => {
 							button.addEventListener('click', function(e) {
 								e.stopPropagation();
-								
+
 								// Obter o ID da imagem alvo
 								const targetId = this.getAttribute('data-target');
 								const targetImg = document.getElementById(targetId);
-								
+
 								if (targetImg) {
 									// Rolar até a imagem alvo
 									targetImg.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1340,7 +1340,7 @@
 						});
 					}
 				}
-				
+
 				vd.classList.add('aberto');
 				obj.classList.add('aberto');
 				voltar.classList.add('aberto');
@@ -1354,23 +1354,23 @@
 		 */
 		function derrubar_videos() {
 			console.log('Fechando todos os vídeos');
-			
+
 			// Remover qualquer botão de ativar som que possa existir
 			document.querySelectorAll('button[style*="position: absolute"]').forEach(btn => {
 				btn.remove();
 			});
-			
+
 			// Remover classes 'aberto'
 			document.querySelectorAll('.aberto').forEach((obj) => {
 				obj.classList.remove('aberto');
 			});
-			
+
 			// Reiniciar posição de rolagem da programação
 			const progContainer = document.querySelector('.programacao-container');
 			if (progContainer) {
 				progContainer.scrollTop = 0;
 			}
-			
+
 			// Pausar e resetar todos os vídeos
 			videos.forEach((vid) => {
 				let vid_tag = vid.querySelector('video');
@@ -1378,14 +1378,14 @@
 					try {
 						// Pausar o vídeo
 						vid_tag.pause();
-						
+
 						// Resetar a posição
 						vid_tag.currentTime = 0;
-						
+
 						// Verificar e remover manipuladores de eventos duplicados
 						const newVideoElement = vid_tag.cloneNode(true);
 						newVideoElement.classList = vid_tag.classList;
-						
+
 						// Configurar novamente os atributos essenciais
 						newVideoElement.setAttribute('playsinline', '');
 						newVideoElement.setAttribute('webkit-playsinline', '');
@@ -1393,10 +1393,10 @@
 						newVideoElement.setAttribute('muted', '');
 						newVideoElement.setAttribute('disablepictureinpicture', '');
 						newVideoElement.style.pointerEvents = 'auto';
-						
+
 						// Substituir o elemento antigo
 						vid_tag.parentNode.replaceChild(newVideoElement, vid_tag);
-						
+
 						// Garantir que o vídeo seja precarregado
 						newVideoElement.load();
 					} catch(err) {
@@ -1404,7 +1404,7 @@
 					}
 				}
 			});
-			
+
 			// Limpar referência ao vídeo atual
 			videoAtual = null;
 		}
